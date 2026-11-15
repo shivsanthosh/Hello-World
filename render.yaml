@@ -1,0 +1,14 @@
+# Render blueprint: New > Blueprint > select this repository and branch.
+services:
+  - type: web
+    name: panel-studio
+    runtime: docker
+    plan: starter            # a paid plan is required for the persistent disk below
+    healthCheckPath: /healthz
+    envVars:
+      - key: PANEL_STUDIO_PASSWORD
+        sync: false          # you are prompted for the value; it is not stored in the repository
+    disk:
+      name: panel-studio-data
+      mountPath: /data
+      sizeGB: 1
