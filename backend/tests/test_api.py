@@ -207,3 +207,17 @@ def test_dashboard_is_computed(c, pid):
     c.patch(f"/api/projects/{pid}", json={"baseline_prep_hours": 16, "actual_prep_hours": 10}, headers=CO)
     assert c.get("/api/dashboard").json()["prep_time"]["reduction_pct"] == pytest.approx(37.5)
     assert all(e["verified"] == e["total"] for e in d["evidence"])
+
+
+def test_shared_password_gate(c, monkeypatch):
+    import base64
+    monkeypatch.setenv("PANEL_STUDIO_PASSWORD", "s3cret-demo")
+    assert c.get("/api/meta").status_code == 401
+    assert "Basic" in c.get("/api/meta").headers["www-authenticate"]
+    assert c.get("/healthz").status_code == 200                                                  # host health check stays open
+    hdr = lambda pw: {"Authorization": "Basic " + base64.b64encode(f"demo:{pw}".encode()).decode()}
+    assert c.get("/api/meta", headers=hdr("wrong")).status_code == 401
+    assert c.get("/api/meta", headers={"Authorization": "Basic !!notbase64"}).status_code == 401
+    assert c.get("/api/meta", headers=hdr("s3cret-demo")).status_code == 200
+    monkeypatch.delenv("PANEL_STUDIO_PASSWORD")
+    assert c.get("/api/meta").status_code == 200                                                 # gate off when unset

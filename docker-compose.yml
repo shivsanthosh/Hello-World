@@ -1,0 +1,11 @@
+services:
+  panel-studio:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      # Set a shared password before exposing the demo beyond your own machine.
+      PANEL_STUDIO_PASSWORD: ${PANEL_STUDIO_PASSWORD:-}
+    volumes: ["panel-studio-data:/data"]
+    restart: unless-stopped
+volumes:
+  panel-studio-data:

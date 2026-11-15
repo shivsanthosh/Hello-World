@@ -29,14 +29,33 @@ python3 -m venv .venv && . .venv/bin/activate && pip install -r backend/requirem
 The database is SQLite at `backend/data/panel_studio.db` (created and seeded on first start; delete
 the `backend/data` folder to reset). Override with `PANEL_STUDIO_DATA` / `PANEL_STUDIO_DB`.
 
+## Deploy with Docker
+
+```bash
+docker compose up --build            # http://127.0.0.1:8000, data kept in the panel-studio-data volume
+# or
+docker build -t panel-studio . && docker run -p 8000:8000 -v panel-studio-data:/data -e PANEL_STUDIO_PASSWORD=choose-one panel-studio
+```
+
+| Setting | Purpose |
+|---|---|
+| `PANEL_STUDIO_PASSWORD` | Optional shared password (HTTP Basic, any username). **Set it on any hosted demo.** It keeps the URL private; it is not user authentication. |
+| `/data` volume | SQLite database and generated reports. Without a persistent volume all projects, approvals and the audit log are lost on restart. |
+| `PORT` | Listening port (default 8000). |
+| `/healthz` | Unauthenticated health check for the host. |
+
+`render.yaml` is a Render blueprint (web service + 1 GB disk + password prompt). Any container host
+with a persistent disk works the same way. Run a single instance only: SQLite is not safe to share
+between replicas.
+
 ## Tests
 
 ```bash
-(cd backend && python -m pytest -q)        # 48 tests: 35 engine, 13 API/workflow
+(cd backend && python -m pytest -q)        # 49 tests: 37 engine, 12 API/workflow
 node e2e/demo.e2e.cjs                       # 16 browser steps; needs the app running on an EMPTY database
 ```
 
-Latest results: [`docs/backend_test_results.txt`](docs/backend_test_results.txt) (48 passed),
+Latest results: [`docs/backend_test_results.txt`](docs/backend_test_results.txt) (49 passed),
 [`docs/e2e_results.txt`](docs/e2e_results.txt) (16 passed). The browser test also regenerates
 [`docs/screenshots/`](docs/screenshots) and [`docs/sample_calc_report.pdf`](docs/sample_calc_report.pdf).
 

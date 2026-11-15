@@ -1,9 +1,9 @@
 """Panel Studio API. Engineering results come only from the deterministic engine; integrations are mocks."""
 from __future__ import annotations
-import os
+import os, base64, secrets
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException, Header, Body
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from engine import ENGINE_VERSION
@@ -26,6 +26,32 @@ async def lifespan(app):
     yield
 
 app = FastAPI(title="Panel Studio", version=ENGINE_VERSION, lifespan=lifespan)
+
+
+@app.middleware("http")
+async def shared_password_gate(request, call_next):
+    """Optional shared-password gate for hosted demos (HTTP Basic; any username).
+
+    Active only when PANEL_STUDIO_PASSWORD is set. This keeps a demo URL private; it is NOT
+    user authentication - production still requires enterprise SSO. /healthz stays open for the host.
+    """
+    pw = os.environ.get("PANEL_STUDIO_PASSWORD")
+    if pw and request.url.path != "/healthz":
+        ok = False
+        h = request.headers.get("authorization", "")
+        if h.lower().startswith("basic "):
+            try:
+                ok = secrets.compare_digest(base64.b64decode(h[6:]).decode().partition(":")[2], pw)
+            except Exception:
+                ok = False
+        if not ok:
+            return Response("Password required", status_code=401, headers={"WWW-Authenticate": 'Basic realm="Panel Studio demo"'})
+    return await call_next(request)
+
+
+@app.get("/healthz")
+def healthz():
+    return {"ok": True}
 D = Depends(get_db)
 
 
