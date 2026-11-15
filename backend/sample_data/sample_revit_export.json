@@ -1,0 +1,230 @@
+{
+ "schema": "panel-studio-revit-export/1.0",
+ "source": {
+  "application": "Autodesk Revit",
+  "version": "2025",
+  "model": "Northfield_ColdStorage_ARCH-STR.rvt (SAMPLE - synthetic geometry)",
+  "exported_at": "2026-11-10T14:05:00Z",
+  "units": "mm",
+  "exporter": "Panel Studio Revit export schema (sample file)"
+ },
+ "columns": [
+  {
+   "revit_element_id": "500001",
+   "x": 0,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500002",
+   "x": 0,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500003",
+   "x": 8000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500004",
+   "x": 8000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500005",
+   "x": 16000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500006",
+   "x": 16000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500007",
+   "x": 24000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500008",
+   "x": 24000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500009",
+   "x": 32000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500010",
+   "x": 32000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500011",
+   "x": 40000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500012",
+   "x": 40000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500013",
+   "x": 48000,
+   "y": 0
+  },
+  {
+   "revit_element_id": "500014",
+   "x": 48000,
+   "y": 30000
+  },
+  {
+   "revit_element_id": "500015",
+   "x": 0,
+   "y": 7500
+  },
+  {
+   "revit_element_id": "500016",
+   "x": 48000,
+   "y": 7500
+  },
+  {
+   "revit_element_id": "500017",
+   "x": 0,
+   "y": 15000
+  },
+  {
+   "revit_element_id": "500018",
+   "x": 48000,
+   "y": 15000
+  },
+  {
+   "revit_element_id": "500019",
+   "x": 0,
+   "y": 22500
+  },
+  {
+   "revit_element_id": "500020",
+   "x": 48000,
+   "y": 22500
+  }
+ ],
+ "walls": [
+  {
+   "revit_element_id": "345601",
+   "name": "South elevation (Grid A)",
+   "type_name": "IMP Wall - 100 mm",
+   "start": [
+    0,
+    0
+   ],
+   "end": [
+    48000,
+    0
+   ],
+   "base_elevation": 0,
+   "height": 9000,
+   "openings": [
+    {
+     "revit_element_id": "361001",
+     "kind": "dock door",
+     "offset": 9800,
+     "width": 2750,
+     "sill": 0,
+     "height": 3050
+    },
+    {
+     "revit_element_id": "361002",
+     "kind": "dock door",
+     "offset": 17800,
+     "width": 2750,
+     "sill": 0,
+     "height": 3050
+    },
+    {
+     "revit_element_id": "361003",
+     "kind": "dock door",
+     "offset": 25800,
+     "width": 2750,
+     "sill": 0,
+     "height": 3050
+    },
+    {
+     "revit_element_id": "361004",
+     "kind": "man door",
+     "offset": 41000,
+     "width": 1000,
+     "sill": 0,
+     "height": 2150
+    }
+   ]
+  },
+  {
+   "revit_element_id": "345602",
+   "name": "East elevation (Grid 7)",
+   "type_name": "IMP Wall - 100 mm",
+   "start": [
+    48000,
+    0
+   ],
+   "end": [
+    48000,
+    30000
+   ],
+   "base_elevation": 0,
+   "height": 9000,
+   "openings": [
+    {
+     "revit_element_id": "361005",
+     "kind": "window",
+     "offset": 9000,
+     "width": 3600,
+     "sill": 1200,
+     "height": 1500
+    }
+   ]
+  },
+  {
+   "revit_element_id": "345603",
+   "name": "North elevation (Grid E)",
+   "type_name": "IMP Wall - 100 mm",
+   "start": [
+    48000,
+    30000
+   ],
+   "end": [
+    0,
+    30000
+   ],
+   "base_elevation": 0,
+   "height": 9000,
+   "openings": []
+  },
+  {
+   "revit_element_id": "345604",
+   "name": "West elevation (Grid 1)",
+   "type_name": "IMP Wall - 100 mm",
+   "start": [
+    0,
+    30000
+   ],
+   "end": [
+    0,
+    0
+   ],
+   "base_elevation": 0,
+   "height": 9000,
+   "openings": [
+    {
+     "revit_element_id": "361006",
+     "kind": "overhead door",
+     "offset": 11500,
+     "width": 4200,
+     "sill": 0,
+     "height": 4500
+    }
+   ]
+  }
+ ]
+}

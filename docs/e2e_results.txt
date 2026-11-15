@@ -1,0 +1,18 @@
+PASS 1. Create project from mock Salesforce opportunity
+PASS 2. Import Revit-derived model (4 walls, bays derived from columns)
+PASS 3. 3D viewer renders; geometry derived from model
+PASS 4. Deterministic calculation: default layout is checked and FAILS honestly
+PASS 4b. Coordinator enters current-practice layout on South wall (12 girt lines, heavy Z254): PASSES
+PASS 5. Optimise support spacing and girt size on every wall, apply, re-check
+PASS 6. Viewer reflects optimised layout; elevation view; passing trace
+PASS 7. Coordinator submits; cannot approve (role enforced)
+PASS 8. Engineer: reliance approval BLOCKED by unverified data; demonstration approval recorded
+PASS 9. Generate PDF report and verify the download is a real PDF
+PASS 10. Mock Forma Docs publish, mock SAP handoff staged (not transmitted), mock Salesforce sync
+PASS 11. Record measured preparation hours; audit chain intact
+PASS 12. Executive dashboard shows computed KPIs
+PASS 13. Library and validation pages
+PASS 14. Read-only manager cannot change anything
+PASS 15. No browser console errors during the run
+
+16 passed, 0 failed
