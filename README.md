@@ -51,7 +51,7 @@ between replicas.
 ## Tests
 
 ```bash
-(cd backend && python -m pytest -q)        # 49 tests: 37 engine, 12 API/workflow
+(cd backend && python -m pytest -q)        # 49 tests: 35 engine, 14 API/workflow
 node e2e/demo.e2e.cjs                       # 16 browser steps; needs the app running on an EMPTY database
 ```
 
