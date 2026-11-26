@@ -1,0 +1,24 @@
+{
+  "name": "sandwich-panel-flow",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interactive React Flow design procedure for metal-faced sandwich panels: ECCS/CIB Publication 257 resistance model with ASCE 7-22 loads and combinations.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test src/engine.test.js",
+    "artifact": "vite build --mode artifact && node scripts/make-artifact.mjs"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.3.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11",
+    "vite-plugin-singlefile": "^2.0.3"
+  }
+}
